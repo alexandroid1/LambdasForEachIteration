@@ -30,11 +30,14 @@ public class CollectionIterationExample {
         people.forEach(p -> System.out.println(p));
 
         System.out.println("");
+        System.out.println("Using lambdas for each (external iterator) + parallel");
+        people.parallelStream().forEach(p -> System.out.println(p));
+
+        System.out.println("");
         System.out.println("Using for each method references (internal iterator) - can be executed in parallel");
         people.forEach(System.out::println);
 
     }
-
 
 
 }
