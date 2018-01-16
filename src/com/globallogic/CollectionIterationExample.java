@@ -89,6 +89,11 @@ public class CollectionIterationExample {
                 //.reduce(0,(total, e) -> Integer.sum(total, e)));
                 .reduce(0,Integer::sum));
 
+        //String concat
+        System.out.println(
+                numbers.stream()
+                .map(String::valueOf)
+                .reduce("",(carry,str) -> carry.concat(str)));
     }
 
 }
