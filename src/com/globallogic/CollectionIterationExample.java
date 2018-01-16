@@ -69,6 +69,26 @@ public class CollectionIterationExample {
         // numbers
         numbers.forEach(System.out::println);
 
+        // parameter as a target
+        // numbers
+        numbers.stream()
+                //.map(e -> String.valueOf(e))
+                .map(String::valueOf)
+                .forEach(System.out::println);
+
+        // numbers
+        numbers.stream()
+                //.map(e -> e.toString())
+                .map(e -> String.valueOf(e))
+                .map(String::toString)
+                .forEach(System.out::println);
+
+        // sum
+        System.out.println(
+                numbers.stream()
+                //.reduce(0,(total, e) -> Integer.sum(total, e)));
+                .reduce(0,Integer::sum));
+
     }
 
 }
