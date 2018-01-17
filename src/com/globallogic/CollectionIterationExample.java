@@ -93,7 +93,48 @@ public class CollectionIterationExample {
         System.out.println(
                 numbers.stream()
                 .map(String::valueOf)
-                .reduce("",(carry,str) -> carry.concat(str)));
+                //.reduce("",(carry,str) -> carry.concat(str)));
+                .reduce("", String::concat));
+
+        // given the values, double the even numbers and total
+
+        int result = 0;
+
+        for (int e : numbers) {
+            if (e % 2 == 0) {
+                result += e*2;
+            }
+        }
+
+        System.out.println(result);
+
+        // with streams
+        System.out.println(
+            numbers.stream()
+                    .filter(e -> e % 2 == 0)
+                    .map(e -> e * 2)
+                    .reduce(0, Integer::sum));
+
+        // with streams 2
+        System.out.println(
+                numbers.stream()
+                        .filter(e -> e % 2 == 0)
+                        .mapToInt(e -> e * 2)
+                        .sum());
+
+        // --- parallel ---
+
+        System.out.println(
+                numbers.parallelStream()
+                        .filter(e -> e % 2 == 0)
+                        .mapToInt(CollectionIterationExample::compute)
+                        .sum());
+    }
+
+    private static int compute(int number) {
+        // assume this is time intensive
+        try { Thread.sleep(1000); } catch (Exception ex) {}
+        return number * 2;
     }
 
 }
