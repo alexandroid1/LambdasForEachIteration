@@ -3,6 +3,7 @@ package com.globallogic;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class CollectionIterationExample {
 
@@ -129,6 +130,15 @@ public class CollectionIterationExample {
                         .filter(e -> e % 2 == 0)
                         .mapToInt(CollectionIterationExample::compute)
                         .sum());
+
+        // --- collect ---
+
+        List<Integer> doubleOfEven2 =
+                numbers.stream()
+                        .filter(e -> e % 2 == 0)
+                        .map(e -> e * 2)
+                        .collect(Collectors.toList());
+        System.out.println(doubleOfEven2);
     }
 
     private static int compute(int number) {
